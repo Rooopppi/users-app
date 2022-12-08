@@ -1,0 +1,27 @@
+.user {
+  background: #f4f4f4;
+  margin: 5px;
+  width: 400px;
+  padding: 27px 30px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  word-break: break-all;
+}
+
+.user th {
+  text-align: left;
+  padding-right: 10px;
+  min-width: 100px;
+}
+
+.controls {
+  position: absolute;
+  top: 13px;
+  right: 20px;
+  cursor: pointer;
+}
