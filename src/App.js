@@ -1,29 +1,24 @@
 import { useState, useCallback } from "react";
 import User from "./components/User/User";
 import ControlUser from "./components/ControlUser/ControlUser";
+import { nanoid } from "nanoid";
 
 const App = () => {
   const [users, setUsers] = useState([
     {
       id: 1,
-      userName: "Denys",
-      email: "test@gmail.com",
-      number: 9532194129,
-    },
-    {
-      id: 2,
       userName: "Ivan",
       email: "test@gmail.com",
       number: 380953918321,
     },
     {
-      id: 3,
+      id: 2,
       userName: "Oleg",
       email: "test@gmail.com",
       number: 380953918321,
     },
     {
-      id: 4,
+      id: 3,
       userName: "Bogdan",
       email: "test@gmail.com",
       number: 380953918321,
@@ -34,7 +29,7 @@ const App = () => {
 
   const addUser = useCallback(
     (user) => {
-      const id = Math.floor(Math.random() * 10000) + 1;
+      const id = nanoid();
       const newUser = { id, ...user };
       setUsers([...users, newUser]);
     },
@@ -67,7 +62,7 @@ const App = () => {
         selectedUser={selectedUser}
       />
       <div className="users">
-        {users.length > 0
+        {users.length
           ? users.map((user) => (
               <User
                 key={user.id}
