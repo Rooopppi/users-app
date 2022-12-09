@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import User from "./components/User/User";
 import ControlUser from "./components/ControlUser/ControlUser";
 
@@ -32,23 +32,32 @@ const App = () => {
 
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const addUser = (user) => {
-    const id = Math.floor(Math.random() * 10000) + 1;
-    const newUser = { id, ...user };
-    setUsers([...users, newUser]);
-  };
+  const addUser = useCallback(
+    (user) => {
+      const id = Math.floor(Math.random() * 10000) + 1;
+      const newUser = { id, ...user };
+      setUsers([...users, newUser]);
+    },
+    [users]
+  );
 
-  const editUser = (editedUser) => {
-    const updatedUsers = users.map((user) =>
-      editedUser.id === user.id ? editedUser : user
-    );
-    setUsers(updatedUsers);
-    setSelectedUser(null);
-  };
+  const editUser = useCallback(
+    (editedUser) => {
+      const updatedUsers = users.map((user) =>
+        editedUser.id === user.id ? editedUser : user
+      );
+      setUsers(updatedUsers);
+      setSelectedUser(null);
+    },
+    [users]
+  );
 
-  const deleteUser = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
-  };
+  const deleteUser = useCallback(
+    (id) => {
+      setUsers(users.filter((user) => user.id !== id));
+    },
+    [users]
+  );
 
   return (
     <div className="container">
